@@ -12,7 +12,7 @@ If you'd like to use this as a template for your own résumé, run the following
 
 ```shell
 git clone https://github.com/cawaltrip/resume
-pushd resume
+cd resume
 echo "" > address.tex
 echo "" > banner.tex
 ```

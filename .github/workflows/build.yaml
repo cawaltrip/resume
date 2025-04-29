@@ -45,9 +45,9 @@ jobs:
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ secrets.FULL_NAME }} - Resume.pdf"
-          path: "${{ secrets.FULL_NAME }} - Resume.pdf"
-          if-no-exists: "error"
+          name: "Chris Waltrip - Resume.pdf"
+          path: "Chris Waltrip - Resume.pdf"
+          if-no-files-found: "error"
           retention-days: 90
           overwrite: true
 

@@ -36,6 +36,10 @@ jobs:
           yq -i '.cv.phone = "${{secrets.PHONE}}"' ${cv_file}
           yq -i '.cv.social_networks[] |= select(.network == "LinkedIn") .username = "${{secrets.LINKEDIN_USERNAME}}"' ${cv_file}
           yq -i '.cv.social_networks[] |= select(.network == "GitHub") .username = "${{ github.repository_owner }}"' ${cv_file}
+
+          # Extract the full name and set it as an output
+          author_name=$(yq '.cv.name' ${cv_file})
+          echo "author_name=${author_name}" >> $GITHUB_OUTPUT
           
       - name: Build CV
         id: build-cv
@@ -45,8 +49,8 @@ jobs:
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "Chris Waltrip - Resume.pdf"
-          path: "Chris Waltrip - Resume.pdf"
+          name: "${{ steps.update-cv-file.outputs.author_name }} - Resume.pdf"
+          path: "${{ steps.update-cv-file.outputs.author_name }} - Resume.pdf"
           if-no-files-found: "error"
           retention-days: 90
           overwrite: true

@@ -16,13 +16,15 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+          cache: 'pip'
           
       - name: Install dependencies
         id: install-dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install "rendercv[full]"
-          sudo apt-get install -y exiftool
+          sudo apt-get install -y exiftool pipx
+          pipx ensurepath
+          pipx install "rendercv[full]"
           sudo snap install yq
           
       - name: Create CV file with secrets
@@ -42,7 +44,7 @@ jobs:
         
       - name: Upload CV artifact
         id: upload-artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: "${{ secrets.FULL_NAME }} - Resume.pdf"
           path: "${{ secrets.FULL_NAME }} - Resume.pdf"

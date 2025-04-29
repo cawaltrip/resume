@@ -1,0 +1,296 @@
+cv:
+  name: Chris Waltrip
+  location: __LOCATION__
+  email: example@example.com
+  phone: +1-800-555-0123
+  website:
+  social_networks:
+    - network: LinkedIn
+      username: __LINKEDIN_USERNAME__
+    - network: GitHub
+      username: __GITHUB_USERNAME__
+  sections:
+    professional_Summary:
+      - >- 
+          Senior Security, Infrastructure, and Incident Response Engineer 
+          with 10+ years of hands-on experience securing large-scale 
+          environments. Lead investigations, automate detection and 
+          response workflows, and build custom tools that harden systems 
+          against emerging threats. Translate complex technical 
+          findings into clear, actionable guidance for both technical 
+          teams and non-technical stakeholders, driving continuous 
+          improvements in security posture.
+    skills:
+      - label: Languages
+        details: 'Python, Bash, PowerShell, TypeScript, C, C++, Java'
+      - label: Cloud/Container Platforms
+        details: AWS EKS, Kubernetes, Helm, Terraform, AWS CDK
+      - label: Detection & Response
+        details: CrowdStrike Falcon, Falco, Code42 (now Mimecast) Incydr, Tenable One, Splunk, Datadog, Timesketch (OSDFIR)
+      - label: Automation & CI/CD
+        details: GitHub Actions, Bitrise, Ansible, SonarQube, Semgrep, Kestra
+      - label: Offensive & Forensics
+        details: Cobalt Strike, IDA Pro, EnCase, FTK, SIFT, Checkmarx, Coverity
+      - label: Compliance & Frameworks
+        details: NIST 800-53, DoD RMF, DoD Cyber Table Top (CTT), DISA STIGs, MITRE ATT&CK
+    experience:
+      - company: Grindr
+        position: Senior Cybersecurity Engineer
+        date:
+        start_date: 2024-01
+        end_date: present
+        location: Chicago, IL, USA
+        summary:
+        highlights:
+          - Incident commander for investigations of workstation and cloud incidents, driving containment & eradication with MTTR of less than 4 hours, and publishing detailed RCAs to exec leadership.
+          - Built an automated evidence-collection playbook (Python + CrowdStrike Falcon API + Timesketch) that cuts analyst toil by 25% and standardizes chain-of-custody for legal.
+          - Stood up real-time intrusion detection engineering pipeline (Falco → AWS S3/Security Lake → Splunk/Datadog) and fine-tuned 75+ rules, reducing false-positive rate by more than 80% while raising true-positive fidelity.
+          - Led enterprise insider threat security efforts focusing using CrowdStrike Falcon and Code42 Incydr.
+          - Architected a DevSecOps pipeline integrated with SonarQube, Semgrep and other CI/CD tools via GitHub Actions and Bitrise.
+          - Managed production Kubernetes on AWS EKS and led container security initiatives with Falco, CrowdStrike Falcon, Tenable One, and Kestra.
+          - Spearheaded bug bounty program; partnered with infrastructure, product, and legal teams to prioritize and triage reports; cut payout cycle time from 28 → 10 days.
+      - company: Amazon Web Services
+        position: Security Engineer II
+        date:
+        start_date: 2022-01
+        end_date: 2023-10
+        location: Seattle, WA
+        summary:
+        highlights:
+          - Key contributor to AWS Security Corporate Architecture & Design team delivering security to over 1 million client devices.
+          - Consulted and created threat models of proposed internally developed security products and authentication and authorization implementations.
+          - Led the team to conceive, produce and execute a unique program to review the security posture of thousands of third-party applications on user devices.
+          - Facilitated testing and development of SAML-based VPN solution, testing load with 10,000 simulated concurrent connections.
+          - Introduced proof-of-concept for automating client application management to connect acquisition, deployment, use, and patching of application lifecycle to application security (AppSec).
+          - Collaborated with security operations (SecOps), enterprise and platform engineering, acquisitions, legal and HR teams to complete 20+ security investigations.
+      - company: Amazon Web Services
+        position: Penetration Test Engineer
+        date:
+        start_date: 2020-10
+        end_date: 2022-01
+        location: Seattle, WA
+        summary:
+        highlights:
+          - Ran the security assessments and penetration tests of 20 services running on sensitive internal networks in collaboration with members of the Vulnerability Assessment & Penetration Testing team.
+          - Guided internal development teams on security best practices including OWASP Top Ten vulnerabilities mitigations.
+          - Acknowledged as a subject matter expert for applications running close to the Linux kernel including device drivers for custom hardware and proprietary lightweight hypervisor.
+          - Automated penetration test lifecycle management by developing innovative tooling to save more than 8 hours of reporting time per engagement accounting for 10-20% of total engagement time.
+      - company: Department of Defense
+        position: Senior Infrastructure Engineer
+        date:
+        start_date: 2017-03
+        end_date: 2020-10
+        location: Keyport, WA
+        summary: "*Integrated Warfare Systems, NAVSEA, NUWC Division Keyport*"
+        highlights:
+          - Designed and integrated hardware, IT, and resilient software systems for the CV-TSC (Aircraft Carrier Tactical Support Center) on all 11 active aircraft carriers.
+          - Wrote a tool that automated the building and deployment of custom RHEL-based server and client operating systems, network stack (Cisco Catalyst & ASA), storage system (iSCSI/NFS), and software packages, increasing image-building efficiency by 4,800% from a 24-hour manual process to completion in under 30 minutes.
+          - Developed native packages to deploy system configurations, automatically configure network, storage, and software subsystems, and deploy tactical software as system services.
+          - Led the migration to virtualization, containerization, and continuous integration (CI) of tactical software and operating environment to enable software developers and integration engineers to build and deploy environments for testing within minutes, not hours.
+          - Modernized infrastructure to support the US Navy’s Compile-to-Combat in 24 hours (C2C24) initiative by adopting Infrastructure as Code (IaC) to allow rapid system deployment.
+          - Stood up an RPM repository with over 50 packages, 150 scripts, and 30 configuration files in on the deployment image to configure servers according to relevant STIGs (Security Technical Implementation Guides).
+          - Authored 10+ SELinux Targeted Policies to prevent malicious software from compromising tactical software.
+      - company: Department of Defense
+        position: IT Specialist (INFOSEC)
+        date:
+        start_date: 2015-08
+        end_date: 2017-03
+        location: Keyport, WA
+        summary: "*Advanced Cyber Engineering Services, NAVSEA, NUWC Division Keyport*"
+        highlights:
+          - Delivered security assessments and performed targeted penetration tests on Cross-Domain Solutions (CDS) as part of the certification and accreditation process for devices in classified domains.
+          - Platforms included Linux and custom embedded systems, deployed on vessels, submarines, and on-shore sites for the US Navy.
+          - Engaged in conducting penetration tests and security assessments for heavy vehicle platforms, including the telematics systems and other peripherals connected to J1939 and J1587 buses.
+          - Architected and deployed an innovative software analysis system used to perform static source code analysis of Government Off-The-Shelf (GOTS) software using Checkmarx, Coverity, Klockwork, Fortify, and Code Dx.
+          - Led digital forensics analyses on Windows operating systems with hardware components using EnCase and Forensic Toolkit (FTK) on FRED forensic workstations and SIFT for 4 investigations.
+          - Facilitated reverse-engineering of a novel software solution written by militaries of foreign adversaries using IDA Pro for binary disassembly and Hex-Rays for decompilation.
+    # NOTE: The location has been removed from each entry to make sure the year and degree are on the same line for ATS recognition.
+    education:
+      - institution: University of Idaho
+        area: Computer Science
+        degree: MS
+        date: 2016-08
+        start_date:
+        end_date:
+        location:
+        summary: "Non-thesis Project: Reconfigurable Attack-Defend Instructional Computing Lab (RADICL)"
+        highlights:
+      - institution: University of Idaho
+        area: Computer Science
+        degree: BS
+        date: 2014-12
+        start_date:
+        end_date:
+        location:
+        summary: DHS CyberCorps Scholarship for Service Awarded to Study Information Assurance
+        highlights:
+    # TODO (Chris): Finish creating new "Training" entry type.
+    training:
+      - type: BulletEntry
+        bullet: "OffSec: WEB-300 - Advanced Web Attacks & Exploitation (OSWE)"
+        date: "2021"
+      - type: BulletEntry
+        bullet: "OffSec: PEN-200 - Penetration Testing with Kali Linux (OSCP)"
+        date: "2020"
+      - type: BulletEntry
+        bullet: "SANS: ICS418 - ICS Security Essentials for Leaders"
+        date: "2017"
+      - type: BulletEntry
+        bullet: "SANS: SEC660 - Advanced Penetration Testing, Exploit Writing & Ethical Hacking (GXPN)"
+        date: "2017"
+      - type: BulletEntry
+        bullet: "SANS: SEC560 - Network Penetration Testing & Ethical Hacking (GPEN)"
+        date: "2016"
+      - type: BulletEntry
+        bullet: "SANS: SEC501 - Advanced Security Essentials - Enterprise Defender (GCIH)"
+        date: "2015"
+    affiliations:
+      - bullet: "Certified DoD Cyber Table Top Facilitator"
+      - bullet: "Phi Theta Kappa (PTK) International Honor Society"
+      - bullet: "Association for Computing Machinery (ACM)"
+design:
+  theme: engineer
+  page:
+    size: us-letter
+    top_margin: 2cm
+    bottom_margin: 2cm
+    left_margin: 2cm
+    right_margin: 2cm
+    show_page_numbering: false
+    show_last_updated_date: false
+  colors:
+    text: rgb(0, 0, 0)
+    name: rgb(44, 69, 111)
+    connections: rgb(44, 69, 111)
+    section_titles: rgb(44, 69, 111)
+    links: rgb(44, 69, 111)
+    last_updated_date_and_page_numbering: rgb(128, 128, 128)
+  text:
+    font_family: Source Sans 3
+    font_size: 10pt
+    leading: 0.6em
+    alignment: justified-with-no-hyphenation
+    date_and_location_column_alignment: right
+  links:
+    underline: false
+    use_external_link_icon: true
+  header:
+    name_font_family: Source Sans 3
+    name_font_size: 30pt
+    name_bold: true
+    photo_width: 3.5cm
+    vertical_space_between_name_and_connections: 0.7cm
+    vertical_space_between_connections_and_first_section: 0.7cm
+    horizontal_space_between_connections: 0.5cm
+    connections_font_family: Source Sans 3
+    separator_between_connections: ""
+    use_icons_for_connections: true
+    alignment: center
+  section_titles:
+    type: with-parial-line
+    font_family: Source Sans 3
+    font_size: 1.4em
+    bold: true
+    small_caps: false
+    line_thickness: 0.5pt
+    vertical_space_above: 0.5cm
+    vertical_space_below: 0.3cm
+  entries:
+    date_and_location_width: 4.15cm
+    left_and_right_margin: 0.2cm
+    horizontal_space_between_columns: 0.1cm
+    vertical_space_between_entries: 1.2em
+    allow_page_break_in_sections: true
+    allow_page_break_in_entries: true
+    short_second_row: false
+    show_time_spans_in: []
+  highlights:
+    bullet: •
+    top_margin: 0.25cm
+    left_margin: 0.4cm
+    vertical_space_between_highlights: 0.25cm
+    horizontal_space_between_bullet_and_highlight: 0.5em
+    summary_left_margin: 0cm
+  entry_types:
+    one_line_entry:
+      template: "**LABEL:** DETAILS"
+    education_entry:
+      main_column_first_row_template: "**INSTITUTION**, AREA"
+      degree_column_template: "**DEGREE**"
+      degree_column_width: 1cm
+      main_column_second_row_template: |-
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column_template: |-
+        LOCATION
+        DATE
+    normal_entry:
+      main_column_first_row_template: "**NAME**"
+      main_column_second_row_template: |-
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column_template: |-
+        LOCATION
+        DATE
+    experience_entry:
+      main_column_first_row_template: "**COMPANY**, POSITION"
+      main_column_second_row_template: |-
+        SUMMARY
+        HIGHLIGHTS
+      date_and_location_column_template: |-
+        LOCATION
+        DATE
+    publication_entry:
+      main_column_first_row_template: "**TITLE**"
+      main_column_second_row_template: |-
+        AUTHORS
+        URL (JOURNAL)
+      main_column_second_row_without_journal_template: |-
+        AUTHORS
+        URL
+      main_column_second_row_without_url_template: |-
+        AUTHORS
+        JOURNAL
+      date_and_location_column_template: DATE
+locale:
+  language: en
+  phone_number_format: national
+  page_numbering_template: NAME - Page PAGE_NUMBER of TOTAL_PAGES
+  last_updated_date_template: Last updated in TODAY
+  date_template: MONTH_ABBREVIATION YEAR
+  month: month
+  months: months
+  year: year
+  years: years
+  present: present
+  to: –
+  abbreviations_for_months:
+    - Jan
+    - Feb
+    - Mar
+    - Apr
+    - May
+    - June
+    - July
+    - Aug
+    - Sept
+    - Oct
+    - Nov
+    - Dec
+  full_names_of_months:
+    - January
+    - February
+    - March
+    - April
+    - May
+    - June
+    - July
+    - August
+    - September
+    - October
+    - November
+    - December
+rendercv_settings:
+  date: "2025-04-25"
+  render_command:
+  bold_keywords: []

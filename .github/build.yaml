@@ -1,0 +1,68 @@
+name: Build CV
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        id: checkout
+      
+      - name: Set up Python
+        id: setup-python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Install dependencies
+        id: install-dependencies
+        run: |
+          python -m pip install --upgrade pip
+          sudo apt-get install -y exiftool pipx
+          pipx ensurepath
+          pipx install "rendercv[full]"
+          sudo snap install yq
+          
+      - name: Create CV file with secrets
+        id: update-cv-file
+        shell: bash
+        run: |
+          cv_file=$(find . -name "*_CV.yaml" -print -quit)
+          yq -i '.cv.location = "${{secrets.LOCATION}}"' ${cv_file}
+          yq -i '.cv.email = "${{secrets.EMAIL}}"' ${cv_file}
+          yq -i '.cv.phone = "${{secrets.PHONE}}"' ${cv_file}
+          yq -i '.cv.social_networks[] |= select(.network == "LinkedIn") .username = "${{secrets.LINKEDIN_USERNAME}}"' ${cv_file}
+          yq -i '.cv.social_networks[] |= select(.network == "GitHub") .username = "${{ github.repository_owner }}"' ${cv_file}
+          
+      - name: Build CV
+        id: build-cv
+        run: ./build.sh
+        
+      - name: Upload CV artifact
+        id: upload-artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "${{ secrets.FULL_NAME }} - Resume.pdf"
+          path: "${{ secrets.FULL_NAME }} - Resume.pdf"
+          if-no-exists: "error"
+          retention-days: 90
+          overwrite: true
+
+      - name: Display artifact information
+        id: display-artifact-info
+        run: |
+          echo "::notice::Artifact ID: ${{ steps.upload-artifact.outputs.artifact-id }}"
+          echo "::notice::Artifact URL: ${{ steps.upload-artifact.outputs.artifact-url }}"
+          echo "::notice::Artifact Digest: ${{ steps.upload-artifact.outputs.artifact-digest }}"
+
+      - name: Create summary with artifact link.
+        id: create-summary
+        run: |
+          echo "### Resume Generated Successfully 📄" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Download your resume artifact from the link below:" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "[Download Resume PDF](${{ steps.upload-artifact.outputs.artifact-url }})" >> $GITHUB_STEP_SUMMARY

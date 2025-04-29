@@ -9,11 +9,6 @@ check_command() {
     fi
 }
 
-# Check for required tools
-check_command "rendercv" 'pipx install "rendercv[full]"'
-check_command "exiftool" "brew install exiftool"
-check_command "yq" "brew install yq"
-
 # Find the CV YAML file
 filename=$(find . -name "*_CV.yaml" )
 if [ -z "$filename" ]; then

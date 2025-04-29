@@ -25,8 +25,15 @@ if [ -z "$author_name" ]; then
     exit 1
 fi
 
-# Set the output file name based on the author name
-output_file="${author_name} - Resume.pdf"
+# Set the output file name.
+
+if [ -n "$OUTPUT_FILE" ]; then
+  # Use the environment variable if provided
+  output_file="$OUTPUT_FILE"
+else
+  # Default to the author name if not provided
+  output_file="${author_name} - Resume.pdf"
+fi
 
 rendercv render "$filename" \
 --output-folder-name "build" \

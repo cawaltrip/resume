@@ -28,6 +28,8 @@ jobs:
           
       - name: Create CV file with secrets
         id: update-cv-file
+        env:
+          OUTPUT_FILE: ${{ steps.update-cv-file.outputs.output_file }}
         shell: bash
         run: |
           cv_file=$(find . -name "*_CV.yaml" -print -quit)
@@ -40,6 +42,10 @@ jobs:
           # Extract the full name and set it as an output
           author_name=$(yq '.cv.name' ${cv_file})
           echo "author_name=${author_name}" >> $GITHUB_OUTPUT
+
+          # Set the output file name
+          output_file="${author_name} - Resume.pdf"
+          echo "output_file=${output_file}" >> $GITHUB_OUTPUT
           
       - name: Build CV
         id: build-cv
@@ -49,8 +55,8 @@ jobs:
         id: upload-artifact
         uses: actions/upload-artifact@v4
         with:
-          name: "${{ steps.update-cv-file.outputs.author_name }} - Resume.pdf"
-          path: "${{ steps.update-cv-file.outputs.author_name }} - Resume.pdf"
+          name: "${{ steps.update-cv-file.outputs.output_file }}"
+          path: "${{ steps.update-cv-file.outputs.output_file }}"
           if-no-files-found: "error"
           retention-days: 90
           overwrite: true

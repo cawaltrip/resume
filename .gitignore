@@ -54,3 +54,4 @@ temp/
 
 # Local workflow files that might contain secrets
 .github/workflows/local-*
+.github/workflows/.secrets

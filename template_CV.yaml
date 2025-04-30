@@ -184,7 +184,7 @@ design:
     horizontal_space_between_connections: 0.5cm
     connections_font_family: Source Sans 3
     separator_between_connections: ""
-    use_icons_for_connections: true
+    use_icons_for_connections: false
     alignment: center
   section_titles:
     type: with-parial-line

@@ -70,7 +70,7 @@
 #let date = datetime.today()
 
 // Metadata:
-#set document(author: name, title: name + "'s CV", date: date)
+#set document(author: name, title: name + " - Resume", date: date)
 
 // Page settings:
 #set page(

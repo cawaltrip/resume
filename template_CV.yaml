@@ -14,9 +14,10 @@ cv:
       - >- 
           Senior Security, Infrastructure, and Incident Response Engineer 
           with 10+ years of hands-on experience securing large-scale 
-          environments. Lead investigations, automate Falcon/Falco 
-          detections & Terraform-first cloud architectures,
-          response workflows, and build custom tools that harden systems 
+          environments and mentoring analysts and developers. Lead 
+          investigations, automate Falcon/Falco detections, 
+          response workflows and Terraform-first cloud 
+          architectures, and build custom tools that harden systems 
           against emerging threats. Translate complex technical 
           findings into clear, actionable guidance for both technical 
           teams and non-technical stakeholders, driving continuous 
@@ -46,10 +47,10 @@ cv:
           - Incident commander for investigations of workstation and cloud incidents, driving containment & eradication with MTTR of less than 4 hours, and publishing detailed RCAs to exec leadership.
           - Built an automated evidence-collection playbook (Python + CrowdStrike Falcon API + Timesketch) that cuts analyst toil by 25% and standardizes chain-of-custody for legal.
           - Stood up real-time intrusion detection engineering pipeline (Falco to AWS S3/Security Lake to Splunk/Datadog) and fine-tuned 75+ rules, reducing false-positive rate by more than 80% while raising true-positive fidelity.
-          - Led enterprise insider-threat program, tuning Falcon and Incydr rulesets, lowering false-positive rate by 75% over 6 months.
-          - Architected a DevSecOps pipeline integrated with SonarQube, Semgrep and other CI/CD tools via GitHub Actions and Bitrise, and cut PR-to-prod time by 50% across >100 repos.
+          - Led enterprise insider-threat program, tuning Falcon and Incydr rulesets, lowering false-positive rate 75% over 6 months.
+          - Architected a DevSecOps pipeline integrated with SonarQube, Semgrep and other CI/CD tools via GitHub Actions and Bitrise, and cut PR-to-prod time by 50% across 100+ repos.
           - Managed production Kubernetes on AWS EKS and led container security initiatives with Falco, CrowdStrike Falcon, Tenable One, and Kestra.
-          - Spearheaded bug bounty program; partnered with infrastructure, product, and legal teams to prioritize and triage reports; cut payout cycle time from 28 → 10 days.
+          - Spearheaded bug bounty program; partnered with infrastructure, product, and legal teams to prioritize and triage reports; cut payout cycle time from 28 to 10 days.
       - company: Amazon Web Services
         position: Security Engineer II
         date:
@@ -60,7 +61,7 @@ cv:
         highlights:
           - Served as primary AppSec and IR automation SME for Corporate Architecture & Design, securing 1M+ endpoints.
           - Consulted and created threat models of proposed internally developed security products and authentication and authorization implementations.
-          - Led the team to conceive, produce and execute a unique program to review the security posture of thousands of third-party applications on user devices.
+          - Led program reviewing the security posture of 2,000+ third-party desktop apps, removing 90% of previously deployed high-risk titles.
           - Facilitated testing and development of SAML-based VPN solution, testing load with 10,000 simulated concurrent connections with zero capacity-related incidents.
           - Introduced a proof-of-concept automation for client-app lifecycle (acquisition to deployment to patching) that would erase 3 FTE-years of backlog and slash ongoing maintenance efforts for new apps.
           - Collaborated with security operations (SecOps), enterprise and platform engineering, acquisitions, legal and HR teams to complete 20+ security investigations.
@@ -84,7 +85,7 @@ cv:
         location: Keyport, WA
         summary: "*Integrated Warfare Systems, NAVSEA, NUWC Division Keyport*"
         highlights:
-          - Designed and integrated hardware, IT, and resilient software systems for the CV-TSC (Aircraft Carrier Tactical Support Center) across all 11 aircraft carriers, eliminating duplicate hardware and deployment labor, and saving $1.2M+ in CapEx and OpEx.
+          - Designed and integrated hardware, IT, and resilient software systems for the CV-TSC (Aircraft Carrier Tactical Support Center) across all 11 aircraft carriers, eliminating duplicate hardware and deployment labor, and saving $1.2M+ in CapEx/OpEx.
           - Wrote a tool that automated the building and deployment of custom RHEL-based server and client operating systems, network stack (Cisco Catalyst & ASA), storage system (iSCSI/NFS), and software packages, increasing image-building efficiency by 4,800% from a 24-hour manual process to completion in under 30 minutes.
           - Developed native packages to deploy system configurations, automatically configure network, storage, and software subsystems, and deploy tactical software as system services.
           - Led the migration to virtualization, containerization, and continuous integration (CI) of tactical software and operating environment to enable software developers and integration engineers to build and deploy environments for testing within minutes, not hours.
@@ -100,9 +101,9 @@ cv:
         summary: "*Advanced Cyber Engineering Services, NAVSEA, NUWC Division Keyport*"
         highlights:
           - Delivered security assessments and performed targeted penetration tests on Cross-Domain Solutions (CDS) as part of the certification and accreditation process for devices in classified domains.
-          - Platforms included Linux and custom embedded systems, deployed on vessels, submarines, and on-shore sites for the US Navy.
+          - Platforms included Linux and custom embedded systems deployed on vessels, submarines, and on-shore sites for the US Navy.
           - Engaged in conducting penetration tests and security assessments for heavy vehicle platforms, including the telematics systems and other peripherals connected to J1939 and J1587 buses.
-          - Architected and deployed an innovative software analysis system used to perform static source code analysis of Government Off-The-Shelf (GOTS) software using Checkmarx, Coverity, Klockwork, Fortify, and Code Dx.
+          - Architected and deployed an innovative software analysis system used to perform static source code analysis of Government Off-The-Shelf (GOTS) software using Checkmarx, Coverity, Klocwork, Fortify, and Code Dx.
           - Led digital forensics analyses on Windows operating systems with hardware components using EnCase and Forensic Toolkit (FTK) on FRED forensic workstations and SIFT for 4 investigations.
           - Reverse-engineered novel foreign adversary military software using IDA Pro for binary disassembly and Hex-Rays for decompilation.
     # NOTE: The location has been removed from each entry to make sure the year and degree are on the same line for ATS recognition.

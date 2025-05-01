@@ -1,0 +1,5 @@
+design:
+  links:
+    use_external_link_icon: false
+  header:
+    separator_between_connections: "•"

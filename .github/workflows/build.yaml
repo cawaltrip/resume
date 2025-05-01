@@ -11,6 +11,13 @@ jobs:
       - uses: actions/checkout@v4
         id: checkout
       
+      - name: Update repositories
+        id: update-apt-repositories
+        shell: bash
+        run: |
+          sudo add-apt-repository -y ppa:rmescandon/yq
+          sudo apt update
+
       - name: Set up Python
         id: setup-python
         uses: actions/setup-python@v5
@@ -21,36 +28,123 @@ jobs:
         id: install-dependencies
         run: |
           python -m pip install --upgrade pip
-          sudo apt-get install -y exiftool pipx
+          sudo apt install -y libimage-exiftool-perl pipx yq
           pipx ensurepath
           pipx install "rendercv[full]"
-          sudo snap install yq
-          
+
       - name: Create CV file with secrets
         id: update-cv-file
-        env:
-          OUTPUT_FILE: ${{ steps.update-cv-file.outputs.output_file }}
         shell: bash
         run: |
+          set +x
+          export PATH=$HOME/.local/bin:$PATH
           cv_file=$(find . -name "*_CV.yaml" -print -quit)
-          yq -i '.cv.location = "${{secrets.LOCATION}}"' ${cv_file}
-          yq -i '.cv.email = "${{secrets.EMAIL}}"' ${cv_file}
-          yq -i '.cv.phone = "${{secrets.PHONE}}"' ${cv_file}
-          yq -i '.cv.social_networks[] |= select(.network == "LinkedIn") .username = "${{secrets.LINKEDIN_USERNAME}}"' ${cv_file}
+          ats_overlay_file=$(find . -name "*_ATS.yaml" -print -quit)
+          
+          # Process main CV with secrets
+          yq -i '.cv.location = "${{ secrets.LOCATION }}"' ${cv_file}
+          yq -i '.cv.email = "${{ secrets.EMAIL }}"' ${cv_file}
+          yq -i '.cv.phone = "${{ secrets.PHONE }}"' ${cv_file}
+          yq -i '.cv.social_networks[] |= select(.network == "LinkedIn") .username = "${{ secrets.LINKEDIN_USERNAME }}"' ${cv_file}
           yq -i '.cv.social_networks[] |= select(.network == "GitHub") .username = "${{ github.repository_owner }}"' ${cv_file}
 
-          # Extract the full name and set it as an output
+          # Extract the full name so we can set filenames
           author_name=$(yq '.cv.name' ${cv_file})
-          echo "author_name=${author_name}" >> $GITHUB_OUTPUT
-
-          # Set the output file name
-          output_file="${author_name} - Resume.pdf"
-          echo "output_file=${output_file}" >> $GITHUB_OUTPUT
           
-      - name: Build CV
+          # Set the filenames for the standard CV
+          input_file=${cv_file}
+          output_file="${author_name} - Resume.pdf"
+          echo "input_file=${input_file}" >> $GITHUB_OUTPUT
+          echo "output_file=${output_file}" >> $GITHUB_OUTPUT
+
+          # Create ATS version if overlay file exists
+          if [ -f "$ats_overlay_file" ]; then
+            echo "Creating ATS-optimized version..."
+            ats_input_file=ats_final.yaml
+            
+            # Apply ATS overlay using yq merge
+            yq eval-all 'select(fileIndex == 0) * select(fileIndex == 1)' ${cv_file} ${ats_overlay_file} > ${ats_input_file}
+
+            # Set the filenames for the ATS CV
+            ats_output_file="${author_name} - ATS Resume.pdf"
+            echo "ats_input_file=${ats_input_file}" >> $GITHUB_OUTPUT"
+            echo "ats_output_file=${ats_output_file}" >> $GITHUB_OUTPUT
+          fi
+          set -x
+
+      - name: Build and clean standard CV
         id: build-cv
-        run: ./build.sh
-        
+        shell: bash
+        run: |
+          # Check if the input file exists and build the standard CV
+          input_file="${{ steps.update-cv-file.outputs.input_file }}"
+          output_file="${{ steps.update-cv-file.outputs.output_file }}"
+          
+          if [ -f "${input_file}" ]; then
+            echo "Building standard CV..."
+            rendercv render "${input_file}" \
+              --output-folder-name "build" \
+              --pdf-path "./${output_file}" \
+              --dont-generate-markdown \
+              --dont-generate-html \
+              --dont-generate-png
+
+            if [ $? -ne 0 ]; then
+              echo "Error: Failed to render the CV."
+              exit 1
+            fi
+          else
+            echo "Input file not found: ${input_file}"
+            exit 1
+          fi
+
+          # Clean up the metadata from the generated PDF
+          echo "Cleaning metadata and setting document properties..."
+          exiftool \
+            -all:all= \
+            -Title="$author_name - Resume" \
+            -Author="$author_name" \
+            -Keywords="Security Engineering;Incident Response;Detection Engineering" \
+            -overwrite_original \
+            "${output_file}"
+
+      - name: Build and clean ATS CV
+        id: build-ats-cv
+        if: ${{ steps.update-cv-file.outputs.ats_yaml_path != '' }}
+        shell: bash
+        run: |
+          # Check if the ATS input file exists and build the ATS CV
+          input_file="${{ steps.update-cv-file.outputs.ats_input_file }}"
+          output_file="${{ steps.update-cv-file.outputs.ats_output_file }}"
+          
+          if [ -f "${input_file}" ]; then
+            echo "Building ATS CV..."
+            rendercv render "${input_file}" \
+              --output-folder-name "build" \
+              --pdf-path "./${output_file}" \
+              --dont-generate-markdown \
+              --dont-generate-html \
+              --dont-generate-png
+
+            if [ $? -ne 0 ]; then
+              echo "Error: Failed to render the ATS CV."
+              exit 1
+            fi
+          else
+            echo "ATS input file not found: ${input_file}"
+            exit 1
+          fi
+
+          # Clean up the metadata from the generated ATS PDF
+          echo "Cleaning metadata and setting document properties for ATS CV..."
+          exiftool \
+            -all:all= \
+            -Title="$author_name - ATS Resume" \
+            -Author="$author_name" \
+            -Keywords="Security Engineering;Incident Response;Detection Engineering" \
+            -overwrite_original \
+            "${output_file}"
+ 
       - name: Upload CV artifact
         id: upload-artifact
         uses: actions/upload-artifact@v4
@@ -61,12 +155,28 @@ jobs:
           retention-days: 90
           overwrite: true
 
+      - name: Upload ATS CV artifact
+        id: upload-ats-artifact
+        if: ${{ steps.update-cv-file.outputs.ats_yaml_path != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ steps.update-cv-file.outputs.ats_output_file }}"
+          path: "${{ steps.update-cv-file.outputs.ats_output_file }}"
+          if-no-files-found: "error"
+          retention-days: 90
+          overwrite: true
+
       - name: Display artifact information
         id: display-artifact-info
         run: |
-          echo "::notice::Artifact ID: ${{ steps.upload-artifact.outputs.artifact-id }}"
-          echo "::notice::Artifact URL: ${{ steps.upload-artifact.outputs.artifact-url }}"
-          echo "::notice::Artifact Digest: ${{ steps.upload-artifact.outputs.artifact-digest }}"
+          echo "::notice::Standard CV Artifact ID: ${{ steps.upload-artifact.outputs.artifact-id }}"
+          echo "::notice::Standard CV Artifact URL: ${{ steps.upload-artifact.outputs.artifact-url }}"
+          echo "::notice::Standard CV Artifact Digest: ${{ steps.upload-artifact.outputs.artifact-digest }}"
+          if ${{ steps.update-cv-file.outputs.ats_yaml_path != '' }}; then
+            echo "::notice::ATS CV Artifact ID: ${{ steps.upload-ats-artifact.outputs.artifact-id }}"
+            echo "::notice::ATS CV Artifact URL: ${{ steps.upload-ats-artifact.outputs.artifact-url }}"
+            echo "::notice::ATS CV Artifact Digest: ${{ steps.upload-ats-artifact.outputs.artifact-digest }}"
+          fi
 
       - name: Create summary with artifact link.
         id: create-summary
@@ -76,3 +186,6 @@ jobs:
           echo "Download your resume artifact from the link below:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "[Download Resume PDF](${{ steps.upload-artifact.outputs.artifact-url }})" >> $GITHUB_STEP_SUMMARY
+          if ${{ steps.update-cv-file.outputs.ats_yaml_path != '' }}; then
+            echo "[Download ATS Resume PDF](${{ steps.upload-ats-artifact.outputs.artifact-url }})" >> $GITHUB_STEP_SUMMARY
+          fi

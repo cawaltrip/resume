@@ -14,7 +14,8 @@ cv:
       - >- 
           Senior Security, Infrastructure, and Incident Response Engineer 
           with 10+ years of hands-on experience securing large-scale 
-          environments. Lead investigations, automate detection and 
+          environments. Lead investigations, automate Falcon/Falco 
+          detections & Terraform-first cloud architectures,
           response workflows, and build custom tools that harden systems 
           against emerging threats. Translate complex technical 
           findings into clear, actionable guidance for both technical 
@@ -26,7 +27,7 @@ cv:
       - label: Cloud/Container Platforms
         details: AWS EKS, Kubernetes, Helm, Terraform, AWS CDK
       - label: Detection & Response
-        details: CrowdStrike Falcon, Falco, Code42 (now Mimecast) Incydr, Tenable One, Splunk, Datadog, Timesketch (OSDFIR)
+        details: CrowdStrike Falcon, Falco, Code42 (now Mimecast) Incydr, Tenable One, Splunk, Datadog, AWS Security Lake, Timesketch (OSDFIR)
       - label: Automation & CI/CD
         details: GitHub Actions, Bitrise, Ansible, SonarQube, Semgrep, Kestra
       - label: Offensive & Forensics
@@ -44,9 +45,9 @@ cv:
         highlights:
           - Incident commander for investigations of workstation and cloud incidents, driving containment & eradication with MTTR of less than 4 hours, and publishing detailed RCAs to exec leadership.
           - Built an automated evidence-collection playbook (Python + CrowdStrike Falcon API + Timesketch) that cuts analyst toil by 25% and standardizes chain-of-custody for legal.
-          - Stood up real-time intrusion detection engineering pipeline (Falco → AWS S3/Security Lake → Splunk/Datadog) and fine-tuned 75+ rules, reducing false-positive rate by more than 80% while raising true-positive fidelity.
-          - Led enterprise insider-threat program, tuning Falcon and Incydr rulesets, lowering FPR by 75% over 6 months.
-          - Architected a DevSecOps pipeline integrated with SonarQube, Semgrep and other CI/CD tools via GitHub Actions and Bitrise.
+          - Stood up real-time intrusion detection engineering pipeline (Falco to AWS S3/Security Lake to Splunk/Datadog) and fine-tuned 75+ rules, reducing false-positive rate by more than 80% while raising true-positive fidelity.
+          - Led enterprise insider-threat program, tuning Falcon and Incydr rulesets, lowering false-positive rate by 75% over 6 months.
+          - Architected a DevSecOps pipeline integrated with SonarQube, Semgrep and other CI/CD tools via GitHub Actions and Bitrise, and cut PR-to-prod time by 50% across >100 repos.
           - Managed production Kubernetes on AWS EKS and led container security initiatives with Falco, CrowdStrike Falcon, Tenable One, and Kestra.
           - Spearheaded bug bounty program; partnered with infrastructure, product, and legal teams to prioritize and triage reports; cut payout cycle time from 28 → 10 days.
       - company: Amazon Web Services
@@ -61,7 +62,7 @@ cv:
           - Consulted and created threat models of proposed internally developed security products and authentication and authorization implementations.
           - Led the team to conceive, produce and execute a unique program to review the security posture of thousands of third-party applications on user devices.
           - Facilitated testing and development of SAML-based VPN solution, testing load with 10,000 simulated concurrent connections with zero capacity-related incidents.
-          - Introduced a proof-of-concept automation for client-app lifecycle (acquisition → deployment → patching) that would eliminate erased 3 FTE-years of backlog and slash ongoing maintenance efforts for new apps.
+          - Introduced a proof-of-concept automation for client-app lifecycle (acquisition to deployment to patching) that would erase 3 FTE-years of backlog and slash ongoing maintenance efforts for new apps.
           - Collaborated with security operations (SecOps), enterprise and platform engineering, acquisitions, legal and HR teams to complete 20+ security investigations.
       - company: Amazon Web Services
         position: Penetration Test Engineer
@@ -88,7 +89,7 @@ cv:
           - Developed native packages to deploy system configurations, automatically configure network, storage, and software subsystems, and deploy tactical software as system services.
           - Led the migration to virtualization, containerization, and continuous integration (CI) of tactical software and operating environment to enable software developers and integration engineers to build and deploy environments for testing within minutes, not hours.
           - Modernized infrastructure to support the US Navy’s Compile-to-Combat in 24 hours (C2C24) initiative by adopting Infrastructure as Code (IaC) to allow rapid system deployment.
-          - Stood up an RPM repository with over 50 packages, 150 scripts, and 30 configuration files in on the deployment image to configure servers according to relevant STIGs (Security Technical Implementation Guides).
+          - Stood up an RPM repository with over 50 packages, 150 scripts, and 30 configuration files on the deployment image to configure servers according to relevant STIGs.
           - Authored 10+ SELinux Targeted Policies to prevent malicious software from compromising tactical software.
       - company: Department of Defense
         position: IT Specialist (INFOSEC)

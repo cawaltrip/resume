@@ -101,7 +101,7 @@ cv:
         summary: "*Advanced Cyber Engineering Services, NAVSEA, NUWC Division Keyport*"
         highlights:
           - Delivered security assessments and performed targeted penetration tests on Cross-Domain Solutions (CDS) as part of the certification and accreditation process for devices in classified domains.
-          - Platforms included Linux and custom embedded systems deployed on vessels, submarines, and on-shore sites for the US Navy.
+          - Platforms included Linux and custom embedded systems stationed on vessels, submarines, and on-shore sites for the US Navy.
           - Engaged in conducting penetration tests and security assessments for heavy vehicle platforms, including the telematics systems and other peripherals connected to J1939 and J1587 buses.
           - Architected and deployed an innovative software analysis system used to perform static source code analysis of Government Off-The-Shelf (GOTS) software using Checkmarx, Coverity, Klocwork, Fortify, and Code Dx.
           - Led digital forensics analyses on Windows operating systems with hardware components using EnCase and Forensic Toolkit (FTK) on FRED forensic workstations and SIFT for 4 investigations.

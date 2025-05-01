@@ -48,7 +48,7 @@ jobs:
         shell: bash
         run: |
           cv_file="$(find . -name "*_CV.yaml" -print -quit)"
-          ats_overlay_file"=$(find . -name "*_ATS.yaml" -print -quit)"
+          ats_overlay_file="$(find . -name "*_ATS.yaml" -print -quit)"
           
           # Process main CV with secrets
           yq -i '.cv.location = "${{ secrets.LOCATION }}"' ${cv_file}

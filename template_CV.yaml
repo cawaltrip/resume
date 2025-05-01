@@ -17,7 +17,7 @@ cv:
           environments and mentoring analysts and developers. Lead 
           investigations, automate Falcon/Falco detections, 
           response workflows and Terraform-first cloud 
-          architectures, and build custom tools that harden systems 
+          architectures.  Build custom tools that harden systems 
           against emerging threats. Translate complex technical 
           findings into clear, actionable guidance for both technical 
           teams and non-technical stakeholders, driving continuous 
@@ -47,7 +47,7 @@ cv:
           - Incident commander for investigations of workstation and cloud incidents, driving containment & eradication with MTTR of less than 4 hours, and publishing detailed RCAs to exec leadership.
           - Built an automated evidence-collection playbook (Python + CrowdStrike Falcon API + Timesketch) that cuts analyst toil by 25% and standardizes chain-of-custody for legal.
           - Stood up real-time intrusion detection engineering pipeline (Falco to AWS S3/Security Lake to Splunk/Datadog) and fine-tuned 75+ rules, reducing false-positive rate by more than 80% while raising true-positive fidelity.
-          - Led enterprise insider-threat program, tuning Falcon and Incydr rulesets, lowering false-positive rate 75% over 6 months.
+          - Led enterprise insider-threat program, tuning Falcon and Incydr rulesets, lowering false-positive rate by 75% over 6 months.
           - Architected a DevSecOps pipeline integrated with SonarQube, Semgrep and other CI/CD tools via GitHub Actions and Bitrise, and cut PR-to-prod time by 50% across 100+ repos.
           - Managed production Kubernetes on AWS EKS and led container security initiatives with Falco, CrowdStrike Falcon, Tenable One, and Kestra.
           - Spearheaded bug bounty program; partnered with infrastructure, product, and legal teams to prioritize and triage reports; cut payout cycle time from 28 to 10 days.
